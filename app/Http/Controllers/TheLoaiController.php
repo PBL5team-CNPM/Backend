@@ -26,7 +26,10 @@ class TheLoaiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $theloai = theloai::create($data);
+
+        return response()->json($theloai);
     }
 
     /**

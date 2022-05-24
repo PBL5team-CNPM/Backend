@@ -74,7 +74,7 @@ class PhimController extends Controller
             return response()->json(['message'=>'phim not found'], 404);
         }
         $phim->delete();
-        $phims = phim::orderBy('id','desc')->get();
+        $phims = phim::all();
         
         return response()->json($phims);
     }

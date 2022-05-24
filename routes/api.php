@@ -26,3 +26,4 @@ Route::get('/theloais', [TheLoaiController::class, 'index']);
 Route::post('/addphims', [PhimController::class, 'store']);
 Route::put('/updatephim/{id}', [PhimController::class, 'update']);
 Route::post('/deletephim/{id}', [PhimController::class, 'destroy']);
+Route::post('/addtheloais', [TheLoaiController::class, 'store']);
