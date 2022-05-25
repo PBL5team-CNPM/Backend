@@ -10,4 +10,10 @@ class phim_theloai extends Model
     use HasFactory;
 
     protected $table = 'phim_theloais';
+
+    protected $fillable = 
+    [
+        'theloai_id',
+        'phim_id'
+    ];
 }

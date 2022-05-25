@@ -24,4 +24,10 @@ class phim extends Model
         'ngay_chieu',
         'ngay_ketthuc'
     ];
+
+    protected $with = ['theloai'];
+
+    public function theloai(){
+        return $this->belongsToMany(theloai::class, 'phim_theloais');
+    }
 }

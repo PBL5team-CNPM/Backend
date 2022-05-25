@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\phimResource;
 use App\Models\phim;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class PhimController extends Controller
      */
     public function index()
     {
-        $phim = phim::all();
+        $phim = phimResource::collection(phim::all());
         return response()->json($phim);
     }
 
@@ -28,6 +29,9 @@ class PhimController extends Controller
     {
         $data = $request->all();
         $phim = phim::create($data);
+        
+        // $phim->theloai()->attach($request->theloai);
+        $phim->theloai()->sync((array)$request->theloai);
 
         return response()->json($phim);
     }
@@ -40,7 +44,7 @@ class PhimController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
