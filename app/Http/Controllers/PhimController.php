@@ -25,6 +25,7 @@ class PhimController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -57,9 +58,11 @@ class PhimController extends Controller
     public function update(Request $request, $id)
     {
         $phim = phim::find($id);
+        
         if(is_null($phim)) {
             return response()->json(['message'=>'phim not found'], 404);
         }
+        $phim->theloai()->sync((array)$request->theloai);
         $phim->update($request->all());
 
         return response()->json($phim);

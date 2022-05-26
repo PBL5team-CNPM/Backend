@@ -16,7 +16,8 @@ class theloaiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'ten_the_loai' => $this->ten_the_loai
+            'ten_the_loai' => $this->ten_the_loai,
+          
         ];
     }
 }
