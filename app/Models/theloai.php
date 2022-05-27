@@ -15,4 +15,7 @@ class theloai extends Model
     [
         'ten_the_loai'
     ];
+
+   
+   
 }

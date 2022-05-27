@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\theloaiResource;
 use App\Models\theloai;
 use Illuminate\Http\Request;
 
