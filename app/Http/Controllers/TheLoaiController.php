@@ -51,6 +51,18 @@ class TheLoaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function find($id)
+    {
+        $theloai = new theloaiResource(theloai::findOrFail($id));
+        if(is_null($theloai)) {
+            return response()->json(['message'=>'theloai not found'], 404);
+        }
+
+        return response()->json($theloai);
+    }
+
+
     public function update(Request $request, $id)
     {
         $theloai = theloai::find($id);
