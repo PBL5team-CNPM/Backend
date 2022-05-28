@@ -16,6 +16,8 @@ class theloai extends Model
         'ten_the_loai'
     ];
 
-   
-   
+    
+    public function phim(){
+        return $this->belongsToMany(phim::class, 'phim_theloais');
+    }
 }
