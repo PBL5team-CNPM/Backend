@@ -15,7 +15,7 @@ class TheLoaiController extends Controller
      */
     public function index()
     {
-        $theloais = theloai::all();
+        $theloais = theloaiResource::collection(theloai::all());
         return response()->json($theloais);
     }
 
