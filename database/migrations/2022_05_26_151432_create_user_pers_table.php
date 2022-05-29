@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->bigInteger('per_id')->unsigned()->index();
             $table->foreign('per_id')->references('id')->on('permision')->onDelete('cascade');
-            $table->integer('licensed')->default(0);
             $table->timestamps();
         });
     }
