@@ -27,3 +27,6 @@ Route::post('/addphims', [PhimController::class, 'store']);
 Route::put('/updatephim/{id}', [PhimController::class, 'update']);
 Route::post('/deletephim/{id}', [PhimController::class, 'destroy']);
 Route::post('/addtheloais', [TheLoaiController::class, 'store']);
+Route::put('/updatetheloai/{id}', [TheLoaiController::class, 'update']);
+Route::post('/deletetheloai/{id}', [TheLoaiController::class, 'destroy']);
+Route::get('/findtheloai/{id}', [TheLoaiController::class, 'find']);

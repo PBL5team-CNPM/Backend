@@ -51,9 +51,28 @@ class TheLoaiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function find($id)
+    {
+        $theloai = new theloaiResource(theloai::findOrFail($id));
+        if(is_null($theloai)) {
+            return response()->json(['message'=>'theloai not found'], 404);
+        }
+
+        return response()->json($theloai);
+    }
+
+
     public function update(Request $request, $id)
     {
-        //
+        $theloai = theloai::find($id);
+        
+        if(is_null($theloai)) {
+            return response()->json(['message'=>'theloai not found'], 404);
+        }
+        $theloai->update($request->all());
+
+        return response()->json($theloai);
     }
 
     /**
@@ -64,6 +83,13 @@ class TheLoaiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $theloai = theloai::find($id);
+        if(is_null($theloai)) {
+            return response()->json(['message'=>'theloai not found'], 404);
+        }
+        $theloai->delete();
+        $theloais = theloai::all();
+        
+        return response()->json($theloais);
     }
 }
