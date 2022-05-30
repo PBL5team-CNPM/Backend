@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('actions', function (Blueprint $table) {
             $table->id();
             $table->string('action_name');
-            $table->string('action_code');
             $table->timestamps();
         });
     }

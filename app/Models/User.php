@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Resources\actionInUserResource;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -21,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'realname',
+        'phone_number',
+        'gender',
+        'birth',
+        'avatar'
     ];
 
     /**
@@ -41,4 +47,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function permission(){
+        return $this->belongsToMany(permission::class, 'user_pers', 'user_id', 'per_id');
+    }
+
+    public function action($id){
+        $users = User::findOrFail($id);
+        $actions = [];
+        $ids = [];
+        foreach($users->permission as $role){
+            foreach($role->action as $act){
+                if(!in_array($act->id,$ids)){
+                    // $actions[] = new actionInUserResource($act);
+                    $actions[] = $act->action_name;
+                    $ids[] = $act->id;
+                }
+            }
+        }
+        return $actions;
+    }
 }

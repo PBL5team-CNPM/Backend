@@ -17,7 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PhimSeeder::class,
             TheloaiSeeder::class,
-            Phim_theloaiSeeder::class
+            Phim_theloaiSeeder::class,
+            UserSeeder::class,
+            PermissionSeeder::class,
+            ActionSeeder::class,
+            Per_ActionSeeder::class,
+            User_PerSeeder::class,
         ]);
     }
 }
