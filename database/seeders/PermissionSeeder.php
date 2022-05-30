@@ -25,9 +25,6 @@ class PermissionSeeder extends Seeder
             [
                 'name_per' => 'TheLoaiManager',
             ],
-            [
-                'name_per' => 'User',
-            ],
         ]);
     }
 }

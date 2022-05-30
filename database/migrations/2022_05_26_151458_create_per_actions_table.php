@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('per_actions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('per_id')->unsigned()->index();
-            $table->foreign('per_id')->references('id')->on('permision')->onDelete('cascade');
+            $table->foreign('per_id')->references('id')->on('permissions')->onDelete('cascade');
             $table->bigInteger('action_id')->unsigned()->index();
-            $table->foreign('action_id')->references('id')->on('action')->onDelete('cascade');
+            $table->foreign('action_id')->references('id')->on('actions')->onDelete('cascade');
             $table->timestamps();
         });
     }
