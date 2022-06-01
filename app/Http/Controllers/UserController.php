@@ -64,7 +64,12 @@ class UserController extends Controller
     }
 
     public function login(Request $request){
-        $user = User::where('email', $request->email)->first();
+        if(filter_var($request->email,FILTER_VALIDATE_EMAIL)){
+            $user = User::where('email', $request->email)->first();
+        }
+        else{
+            $user = User::where('name', $request->email)->first();
+        }
         if($request->email == "" || $request->password == ""){
             return response()->json(["error"=>"Email or password is empty!"], 404);
         }
@@ -129,6 +134,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        if(is_null($user)) {
+            return response()->json(['message'=>'user not found'], 404);
+        }
+        $user->delete();
+        $users = User::all();
+        
+        return response()->json($users);
     }
 }

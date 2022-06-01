@@ -50,6 +50,7 @@ Route::get('/actions', [ActionController::class, 'index']);
 Route::put('/grantpermissiontouser/{id}', [UserController::class, 'grantPermission']);
 Route::put('/updateprofile/{id}', [UserController::class, 'update']);
 Route::post('/uploadavatar/{id}', [UserController::class, 'uploadAvatar']);
+Route::post('/deleteuser/{id}', [UserController::class, 'destroy']);
 
 
 
