@@ -67,4 +67,8 @@ class User extends Authenticatable
         }
         return $actions;
     }
+
+    public function vephim(){
+        return $this->hasMany(vephim::class, 'user_id', 'id');
+    }
 }

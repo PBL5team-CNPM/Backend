@@ -3,8 +3,11 @@
 use App\Http\Controllers\ActionController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhimController;
+use App\Http\Controllers\PhongchieuController;
+use App\Http\Controllers\SuatchieuController;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VephimController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +55,10 @@ Route::put('/updateprofile/{id}', [UserController::class, 'update']);
 Route::post('/uploadavatar/{id}', [UserController::class, 'uploadAvatar']);
 Route::post('/deleteuser/{id}', [UserController::class, 'destroy']);
 
+Route::get('/phongchieus', [PhongchieuController::class, 'index']);
+Route::post('/addphongchieu', [PhongchieuController::class, 'store']);
 
+Route::post('/addsuatchieu', [SuatchieuController::class, 'store']);
 
+Route::post('/addvephim', [VephimController::class, 'store']);
 

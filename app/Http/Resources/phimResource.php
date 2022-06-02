@@ -25,7 +25,8 @@ class phimResource extends JsonResource
             'trailer' =>$this->trailer,
             'ngay_chieu' =>$this->ngay_chieu,
             'ngay_ketthuc' =>$this->ngay_ketthuc,
-            'theloai' => theloaiResource::collection($this->theloai)
+            'theloai' => theloaiResource::collection($this->theloai),
+            'suatchieu' => $this->suatchieu,
         ];
     }
 }
