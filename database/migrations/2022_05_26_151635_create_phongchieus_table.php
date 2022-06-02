@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('phongchieus', function (Blueprint $table) {
             $table->id();
-            $table->string('ten_phong');
+            $table->string('ten_phong')->unique();
             $table->integer('soluong_day');
             $table->integer('soluong_cot');
             $table->timestamps();

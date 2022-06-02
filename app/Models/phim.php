@@ -26,8 +26,12 @@ class phim extends Model
     ];
 
     protected $with = ['theloai'];
- 
+
     public function theloai(){
         return $this->belongsToMany(theloai::class, 'phim_theloais');
+    }
+
+    public function suatchieu(){
+        return $this->hasMany(suatchieu::class, 'phim_id', 'id');
     }
 }
