@@ -76,6 +76,13 @@ class PhongchieuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $phongchieu = phongchieu::find($id);
+        if(is_null($phongchieu)) {
+            return response()->json(['message'=>'phongchieu not found'], 404);
+        }
+        $phongchieu->delete();
+        $phongchieus = phongchieu::all();
+        
+        return response()->json($phongchieus);
     }
 }

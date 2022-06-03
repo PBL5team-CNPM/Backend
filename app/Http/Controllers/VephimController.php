@@ -38,7 +38,9 @@ class VephimController extends Controller
         //     return new VephimResource($vephim);
         // }
         foreach($request->ghe_id as $ghe){
-            if(ghengoi::findOrFail($ghe)->da_chon == 1){
+            $vephim_exist = vephim::where('suatchieu_id', $request->suatchieu_id)
+            ->where('ghe_id', $ghe)->first();
+            if($vephim_exist){
                 return response()->json(['message'=>'this ghe is picked'], 404);
             }
         }
@@ -49,9 +51,9 @@ class VephimController extends Controller
             $vephim->gia_ve = $request->gia_ve;
             $vephim->ghe_id = $ghe;
             $vephim->save();
-            $ghengoi = ghengoi::findOrFail($ghe);
-            $ghengoi->da_chon = 1;
-            $ghengoi->save();
+            // $ghengoi = ghengoi::findOrFail($ghe);
+            // $ghengoi->da_chon = 1;
+            // $ghengoi->save();
         }
         return VephimResource::collection(vephim::all());
     }

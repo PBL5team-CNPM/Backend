@@ -25,6 +25,6 @@ class ghengoi extends Model
     }
 
     public function vephim(){
-        return $this->hasOne(vephim::class, 'ghe_id', 'id');
+        return $this->hasMany(vephim::class, 'ghe_id', 'id');
     }
 }
