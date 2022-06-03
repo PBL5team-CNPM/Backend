@@ -32,6 +32,9 @@ class suatchieu extends Model
         return $this->hasMany(vephim::class, 'suatchieu_id', 'id');
     }
 
+    public function ghe(){
+
+    }
 
     public function checkOutOfPhimSchedule($request){
         $outOfPhimSchedule = phim::where('id',$request->phim_id)

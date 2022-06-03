@@ -57,8 +57,10 @@ Route::post('/deleteuser/{id}', [UserController::class, 'destroy']);
 
 Route::get('/phongchieus', [PhongchieuController::class, 'index']);
 Route::post('/addphongchieu', [PhongchieuController::class, 'store']);
+Route::post('/deletephongchieu/{id}', [PhongchieuController::class, 'destroy']);
 
+Route::get('/suatchieus', [SuatchieuController::class, 'index']);
 Route::post('/addsuatchieu', [SuatchieuController::class, 'store']);
+Route::post('/deletesuatchieu/{id}', [SuatchieuController::class, 'destroy']);
 
 Route::post('/addvephim', [VephimController::class, 'store']);
-

@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PhongchieuResource extends JsonResource
+class GheDaChonResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,11 +16,13 @@ class PhongchieuResource extends JsonResource
     {
         return [
             'id' =>$this->id,
-            'ten_phong' =>$this->ten_phong,
-            'soluong_day' =>$this->soluong_day,
-            'soluong_cot' =>$this->soluong_cot,
-            'ghengoi' => GhengoiResource::collection($this->ghengoi),
-            'soluong_ghe' => $this->ghengoi->count(),
+            'ma_ghe' =>$this->ma_ghe,
+            'vi_tri_day' =>$this->vi_tri_day,
+            'vi_tri_cot' =>$this->vi_tri_cot,
+            'da_chon' => $this->da_chon,
+            'phongchieu_id' => $this->phongchieu_id,
+            'phonchieu' => $this->phongchieu,
+            'suatchieu_ID' => SuatChieuIDResource::collection($this->vephim),
         ];
     }
 }

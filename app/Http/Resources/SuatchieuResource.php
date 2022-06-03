@@ -14,6 +14,18 @@ class SuatchieuResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' =>$this->id,
+            'gio_bat_dau' =>$this->gio_bat_dau,
+            'gio_ket_thuc' =>$this->gio_ket_thuc,
+            'ngay_chieu' =>$this->ngay_chieu,
+            'phim_id' => $this->phim_id,
+            'phongchieu_id' => $this->phongchieu_id,
+            'phongchieu_name' => $this->phongchieu->ten_phong,
+            'ghe_da_chon' => $this->vephim->count(),
+            'soluong_ghe' => $this->phongchieu->ghengoi->count(),
+            'soluong_ghe_trong' => $this->phongchieu->ghengoi->count() - $this->vephim->count(),
+            'ghe' => GheDaChonResource::collection($this->phongchieu->ghengoi),
+        ];
     }
 }
