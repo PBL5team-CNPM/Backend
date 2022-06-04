@@ -17,25 +17,28 @@ class ActionSeeder extends Seeder
     {
     DB::table('actions')->insert([
         [
-            'action_name' => 'AddPhim',
+            'action_name' => 'AddMovie',
         ],
         [
-            'action_name' => 'EditPhim',
+            'action_name' => 'EditMovie',
         ],
         [
-            'action_name' => 'DeletePhim',
+            'action_name' => 'DeleteMovie',
         ],
         [
-            'action_name' => 'AddTheLoai',
+            'action_name' => 'AddCategory',
         ],
         [
-            'action_name' => 'EditTheLoai',
+            'action_name' => 'EditCategory',
         ],
         [
-            'action_name' => 'DeleteTheLoai',
+            'action_name' => 'DeleteCategory',
         ],
         [
             'action_name' => 'DASHBOARD',
+        ],
+        [
+            'action_name' => 'GrantPermission',
         ],
         ]);
     }

@@ -20,10 +20,13 @@ class PermissionSeeder extends Seeder
                 'name_per' => 'SuperAdmin',
             ],
             [
-                'name_per' => 'PhimManager',
+                'name_per' => 'MovieManager',
             ],
             [
-                'name_per' => 'TheLoaiManager',
+                'name_per' => 'CategoryManager',
+            ],
+            [
+                'name_per' => 'UserManager',
             ],
         ]);
     }
