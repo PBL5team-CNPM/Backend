@@ -30,4 +30,8 @@ class vephim extends Model
     public function suatchieu(){
         return $this->belongsTo(suatchieu::class, 'suatchieu_id', 'id');
     }
+
+    public function hoa_don(){
+        return $this->belongsToMany(hoa_don::class, 'hoa_don_vephims', 'vephim_id', 'hoa_don_id');
+    }
 }

@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
             ActionSeeder::class,
             Per_ActionSeeder::class,
             User_PerSeeder::class,
+            PhongChieuSeeder::class,
+            GheNgoiSeeder::class,
+            Food_drinkSeeder::class,
+            SuatChieuSeeder::class
         ]);
     }
 }

@@ -50,14 +50,20 @@ class suatchieu extends Model
     }
 
     public function isSuatChieuExist($request){
-        $suatchieu_exist = suatchieu::where('ngay_chieu', $request->ngay_chieu)
-        ->where('phongchieu_id', $request->phongchieu_id)
-        ->whereBetween('gio_bat_dau',[$request->gio_bat_dau, $request->gio_ket_thuc])
-        ->orWhereBetween('gio_ket_thuc', [$request->gio_bat_dau, $request->gio_ket_thuc])
-        ->orWhere(function($querry) use($request){
-            $querry->where('gio_bat_dau','<=',$request->gio_bat_dau)
-            ->where('gio_ket_thuc','>=',$request->gio_ket_thuc);
-        })->first();
+        $suatchieu_exist = suatchieu::where([
+            'ngay_chieu' => $request->ngay_chieu,
+            'phongchieu_id' => $request->phongchieu_id
+            ])
+        ->where(
+            function($querry) use ($request){
+                $querry->whereBetween('gio_bat_dau',[$request->gio_bat_dau, $request->gio_ket_thuc])
+                ->orWhereBetween('gio_ket_thuc', [$request->gio_bat_dau, $request->gio_ket_thuc])
+                ->orWhere(function($querry) use($request){
+                    $querry->where('gio_bat_dau','<=',$request->gio_bat_dau)
+                    ->where('gio_ket_thuc','>=',$request->gio_ket_thuc);
+                });
+            }
+        )->first();
         if($suatchieu_exist){
             return true;
         }
