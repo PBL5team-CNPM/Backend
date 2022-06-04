@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ActionController;
+use App\Http\Controllers\FoodDrinkBillController;
+use App\Http\Controllers\FoodDrinkController;
+use App\Http\Controllers\HoaDonController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongchieuController;
@@ -34,6 +37,8 @@ Route::get('/phims', [PhimController::class, 'index']);
 Route::get('/theloais', [TheLoaiController::class, 'index']);
 Route::get('/permissions', [PermissionController::class, 'index']);
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/food_drinks', [FoodDrinkController::class, 'index']);
+Route::get('/hoa_dons', [HoaDonController::class, 'index']);
 
 Route::post('/addphims', [PhimController::class, 'store']);
 Route::post('/updatephim/{id}', [PhimController::class, 'update']);
@@ -63,4 +68,13 @@ Route::get('/suatchieus', [SuatchieuController::class, 'index']);
 Route::post('/addsuatchieu', [SuatchieuController::class, 'store']);
 Route::post('/deletesuatchieu/{id}', [SuatchieuController::class, 'destroy']);
 
+Route::get('/vephims', [VephimController::class, 'index']);
 Route::post('/addvephim', [VephimController::class, 'store']);
+
+Route::post('/addfooddrink', [FoodDrinkController::class, 'store']);
+Route::put('/updatefooddrink/{id}', [FoodDrinkController::class, 'update']);
+Route::post('/deletefooddrink/{id}', [FoodDrinkController::class, 'destroy']);
+
+Route::post('/addfooddrinkbill', [FoodDrinkBillController::class, 'store']);
+
+Route::post('/addhoadon', [HoaDonController::class, 'store']);

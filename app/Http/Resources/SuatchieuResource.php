@@ -25,6 +25,8 @@ class SuatchieuResource extends JsonResource
             'ghe_da_chon' => $this->vephim->count(),
             'soluong_ghe' => $this->phongchieu->ghengoi->count(),
             'soluong_ghe_trong' => $this->phongchieu->ghengoi->count() - $this->vephim->count(),
+            'soluong_cot' => $this->phongchieu->soluong_cot,
+            'soluong_day' => $this->phongchieu->soluong_day,
             'ghe' => GheDaChonResource::collection($this->phongchieu->ghengoi),
         ];
     }

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HoaDonResource;
 use App\Http\Resources\VephimResource;
-use App\Models\ghengoi;
+use App\Models\food_drink;
+use App\Models\food_drink_bill;
+use App\Models\hoa_don;
 use App\Models\vephim;
 use Illuminate\Http\Request;
 
-class VephimController extends Controller
+use function PHPUnit\Framework\isNull;
+
+class HoaDonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +21,7 @@ class VephimController extends Controller
      */
     public function index()
     {
-        return VephimResource::collection(vephim::all());
+        return HoaDonResource::collection(hoa_don::all());
     }
 
     /**
@@ -27,16 +32,12 @@ class VephimController extends Controller
      */
     public function store(Request $request)
     {
-        // if(ghengoi::findOrFail($request->ghe_id)->da_chon == 1){
-        //     return response()->json(['message'=>'this ghe is picked'], 404);
-        // }
-        // else{
-        //     $vephim = vephim::create($request->all());
-        //     $ghengoi = ghengoi::findOrFail($request->ghe_id);
-        //     $ghengoi->da_chon = 1;
-        //     $ghengoi->save();
-        //     return new VephimResource($vephim);
-        // }
+        // $vephim = vephim::where("user_id", 2)->get();
+        // return $vephim->sum("gia_ve");
+        $hoadon = new hoa_don;
+        $hoadon->user_id = $request->user_id;
+        $hoadon->gia = 0;
+        $hoadon->save();
         foreach($request->ghe_id as $ghe){
             $vephim_exist = vephim::where('suatchieu_id', $request->suatchieu_id)
             ->where('ghe_id', $ghe)->first();
@@ -51,8 +52,26 @@ class VephimController extends Controller
             $vephim->gia_ve = $request->gia_ve;
             $vephim->ghe_id = $ghe;
             $vephim->save();
+            $hoadon->gia += $request->gia_ve;
+            $hoadon->save();
+            $hoadon->vephim()->attach((array)$vephim->id);
         }
-        return VephimResource::collection(vephim::all());
+        if(($request->food_drink != null)){
+            foreach($request->food_drink as $fd){
+                $fooddrinkbill = new food_drink_bill;
+                $fooddrinkbill->user_id = $request->user_id;
+                $fooddrinkbill->so_luong = $fd["so_luong"];
+                $fooddrinkbill->food_drink_id = $fd["food_drink_id"];
+                $gia = food_drink::findOrFail($fd["food_drink_id"])->gia;
+                $fooddrinkbill->gia = $gia*$fd["so_luong"];
+                $fooddrinkbill->save();
+                $hoadon->gia += $gia*$fd["so_luong"];
+                $hoadon->save();
+                $hoadon->food_drink_bill()->attach((array)$fooddrinkbill->id);
+            }
+        }
+
+        return response()->json(hoa_don::all());
     }
 
     /**
