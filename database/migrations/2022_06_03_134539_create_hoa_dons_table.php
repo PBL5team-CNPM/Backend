@@ -13,14 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ghengois', function (Blueprint $table) {
+        Schema::create('hoa_dons', function (Blueprint $table) {
             $table->id();
-            $table->string('ma_ghe');
-            $table->integer('vi_tri_day');
-            $table->integer('vi_tri_cot');
-            $table->boolean('da_chon')->default(false);
-            $table->bigInteger('phongchieu_id')->unsigned()->index();
-            $table->foreign('phongchieu_id')->references('id')->on('phongchieus')->onDelete('cascade');
+            $table->integer('gia');
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ghengois');
+        Schema::dropIfExists('hoa_dons');
     }
 };

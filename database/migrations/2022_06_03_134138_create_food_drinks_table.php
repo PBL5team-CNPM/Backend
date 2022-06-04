@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ghengois', function (Blueprint $table) {
+        Schema::create('food_drinks', function (Blueprint $table) {
             $table->id();
-            $table->string('ma_ghe');
-            $table->integer('vi_tri_day');
-            $table->integer('vi_tri_cot');
-            $table->boolean('da_chon')->default(false);
-            $table->bigInteger('phongchieu_id')->unsigned()->index();
-            $table->foreign('phongchieu_id')->references('id')->on('phongchieus')->onDelete('cascade');
+            $table->string('ten');
+            $table->integer('gia');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ghengois');
+        Schema::dropIfExists('food_drinks');
     }
 };
