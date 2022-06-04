@@ -65,7 +65,14 @@ class PhongchieuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $phongchieu = phongchieu::find($id);
+        
+        if(is_null($phongchieu)) {
+            return response()->json(['message'=>'phongchieu not found'], 404);
+        }
+        $phongchieu->update($request->all());
+
+        return response()->json($phongchieu);
     }
 
     /**
