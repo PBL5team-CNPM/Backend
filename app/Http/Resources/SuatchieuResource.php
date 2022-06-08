@@ -20,6 +20,7 @@ class SuatchieuResource extends JsonResource
             'gio_ket_thuc' =>$this->gio_ket_thuc,
             'ngay_chieu' =>$this->ngay_chieu,
             'phim_id' => $this->phim_id,
+            'phim_name' => $this->phim->ten,
             'phongchieu_id' => $this->phongchieu_id,
             'phongchieu_name' => $this->phongchieu->ten_phong,
             'ghe_da_chon' => $this->vephim->count(),
