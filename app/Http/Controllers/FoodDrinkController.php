@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FoodDrinkResource;
 use App\Models\food_drink;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class FoodDrinkController extends Controller
     public function index()
     {
         $food_drinks = food_drink::all();
-        return response()->json($food_drinks);
+        // return response()->json($food_drinks);
+        return FoodDrinkResource::collection($food_drinks);
     }
 
     /**

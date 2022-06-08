@@ -58,16 +58,18 @@ class HoaDonController extends Controller
         }
         if(($request->food_drink != null)){
             foreach($request->food_drink as $fd){
-                $fooddrinkbill = new food_drink_bill;
-                $fooddrinkbill->user_id = $request->user_id;
-                $fooddrinkbill->so_luong = $fd["so_luong"];
-                $fooddrinkbill->food_drink_id = $fd["food_drink_id"];
-                $gia = food_drink::findOrFail($fd["food_drink_id"])->gia;
-                $fooddrinkbill->gia = $gia*$fd["so_luong"];
-                $fooddrinkbill->save();
-                $hoadon->gia += $gia*$fd["so_luong"];
-                $hoadon->save();
-                $hoadon->food_drink_bill()->attach((array)$fooddrinkbill->id);
+                if($fd["so_luong"]> 0){
+                    $fooddrinkbill = new food_drink_bill;
+                    $fooddrinkbill->user_id = $request->user_id;
+                    $fooddrinkbill->so_luong = $fd["so_luong"];
+                    $fooddrinkbill->food_drink_id = $fd["food_drink_id"];
+                    $gia = food_drink::findOrFail($fd["food_drink_id"])->gia;
+                    $fooddrinkbill->gia = $gia*$fd["so_luong"];
+                    $fooddrinkbill->save();
+                    $hoadon->gia += $gia*$fd["so_luong"];
+                    $hoadon->save();
+                    $hoadon->food_drink_bill()->attach((array)$fooddrinkbill->id);
+                }
             }
         }
 
