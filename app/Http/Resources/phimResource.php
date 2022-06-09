@@ -21,6 +21,7 @@ class phimResource extends JsonResource
             'dien_vien' =>$this->dien_vien,
             'tom_tat' =>$this->tom_tat,
             'poster' =>$this->poster,
+            'thumbnail' => $this->thumbnail,
             'dao_dien' =>$this->dao_dien,
             'trailer' =>$this->trailer,
             'ngay_chieu' =>$this->ngay_chieu,
