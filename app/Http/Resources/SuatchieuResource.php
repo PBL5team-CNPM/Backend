@@ -28,6 +28,7 @@ class SuatchieuResource extends JsonResource
             'soluong_cot' => $this->phongchieu->soluong_cot,
             'soluong_day' => $this->phongchieu->soluong_day,
             'ghe' => GheDaChonResource::collection($this->phongchieu->ghengoi),
+            'poster' => $this->phim->poster,
         ];
     }
 }
