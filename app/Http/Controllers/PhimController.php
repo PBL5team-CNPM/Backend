@@ -111,7 +111,7 @@ class PhimController extends Controller
             $image = $request->file('poster');
             $extension = $image->getClientOriginalExtension();
             $poster_name = 'phim_poster_'.$phim->id.".".$extension;
-            if(!str_contains($phim->poster, 'other_')){
+            if(!str_contains($phim->poster, 'phim_poster_other_')){
                 $poster_name = 'phim_poster_other_'.$phim->id.".".$extension;
             }
             $phim->poster = $request->file('poster')->storeAs($destination_path, $poster_name);
@@ -120,7 +120,7 @@ class PhimController extends Controller
                 $thumbnail = $request->file('thumbnail');
                 $extension2 = $thumbnail->getClientOriginalExtension();
                 $thumbnail_name = 'phim_thumbnail_'.$phim->id.".".$extension2;
-                if(!str_contains($phim->thumbnail, 'other_')){
+                if(!str_contains($phim->thumbnail, 'phim_thumbnail_other_')){
                     $thumbnail_name = 'phim_thumbnail_other_'.$phim->id.".".$extension2;
                 }
                 $phim->thumbnail = $request->file('thumbnail')->storeAs($destination_path2, $thumbnail_name);
