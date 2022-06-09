@@ -18,7 +18,7 @@ class FoodDrinkResource extends JsonResource
             'id' =>$this->id,
             'ten' =>$this->ten,
             'gia' =>$this->gia,
-            'food_drink_bill' => FoodDrinkBillResource::collection($this->food_drink_bill),
+            'food_drink_bill' => $this->food_drink_bill()->sum('so_luong'),
         ];
     }
 }

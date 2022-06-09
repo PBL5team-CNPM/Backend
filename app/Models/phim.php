@@ -22,7 +22,8 @@ class phim extends Model
         'dao_dien',
         'trailer',
         'ngay_chieu',
-        'ngay_ketthuc'
+        'ngay_ketthuc',
+        'thumbnail'
     ];
 
     protected $with = ['theloai'];

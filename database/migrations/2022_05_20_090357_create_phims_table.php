@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('dien_vien');
             $table->text('tom_tat');
             $table->string('poster');
+            $table->string('thumbnail');
             $table->string('dao_dien');
             $table->string('trailer');
             $table->date('ngay_chieu')->nullable();

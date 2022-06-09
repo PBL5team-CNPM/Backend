@@ -50,6 +50,14 @@ class PhimController extends Controller
             $lastet = phim::latest()->first()->id + 1;
             $poster_name = 'phim_poster_'.$lastet.".".$extension;
             $phim->poster = $request->file('poster')->storeAs($destination_path, $poster_name);
+            if($request->hasFile('thumbnail')){
+                $destination_path2 ='images/thumbnails';
+                $thumbnail = $request->file('thumbnail');
+                $extension2 = $thumbnail->getClientOriginalExtension();
+                $lastet2 = phim::latest()->first()->id + 1;
+                $thumbnail_name = 'phim_thumbnail_'.$lastet2.".".$extension2;
+                $phim->thumbnail = $request->file('thumbnail')->storeAs($destination_path2, $thumbnail_name);
+            }
             $phim->save();
             // $phim->theloai()->sync((array)$request->theloai);
             // $array_id = json_decode($request->theloai,true);
@@ -103,7 +111,20 @@ class PhimController extends Controller
             $image = $request->file('poster');
             $extension = $image->getClientOriginalExtension();
             $poster_name = 'phim_poster_'.$phim->id.".".$extension;
+            if(!str_contains($phim->poster, 'phim_poster_other_')){
+                $poster_name = 'phim_poster_other_'.$phim->id.".".$extension;
+            }
             $phim->poster = $request->file('poster')->storeAs($destination_path, $poster_name);
+            if($request->hasFile('thumbnail')){
+                $destination_path2 ='images/thumbnails';
+                $thumbnail = $request->file('thumbnail');
+                $extension2 = $thumbnail->getClientOriginalExtension();
+                $thumbnail_name = 'phim_thumbnail_'.$phim->id.".".$extension2;
+                if(!str_contains($phim->thumbnail, 'phim_thumbnail_other_')){
+                    $thumbnail_name = 'phim_thumbnail_other_'.$phim->id.".".$extension2;
+                }
+                $phim->thumbnail = $request->file('thumbnail')->storeAs($destination_path2, $thumbnail_name);
+            }
             $phim->save();
             // $phim->theloai()->sync((array)$request->theloai);
             // $array_id = json_decode($request->theloai,true);
