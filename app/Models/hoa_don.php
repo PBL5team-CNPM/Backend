@@ -23,4 +23,8 @@ class hoa_don extends Model
     public function vephim(){
         return $this->belongsToMany(vephim::class, 'hoa_don_vephims', 'hoa_don_id', 'vephim_id');
     }
+
+    public function getvephim(){
+        return $this->vephim()->first();
+    }
 }

@@ -25,6 +25,12 @@ class VephimController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function findVephimByUser($id)
+    {
+        return VephimResource::collection(vephim::where("user_id", $id)->get());
+    }
+
     public function store(Request $request)
     {
         // if(ghengoi::findOrFail($request->ghe_id)->da_chon == 1){

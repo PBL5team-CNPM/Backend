@@ -30,6 +30,12 @@ class HoaDonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function findHoadonsByUser($id)
+    {
+        return HoaDonResource::collection(hoa_don::where('user_id', $id)->orderBy('id','DESC')->get());
+    }
+
     public function store(Request $request)
     {
         // $vephim = vephim::where("user_id", 2)->get();
