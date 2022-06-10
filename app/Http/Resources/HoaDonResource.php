@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\User;
+use App\Models\vephim;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HoaDonResource extends JsonResource
@@ -23,6 +24,9 @@ class HoaDonResource extends JsonResource
             'user_name' => User::find($this->user_id)->name,
             'food_drink_bill' => FoodDrinkBillResource::collection($this->food_drink_bill),
             'vephim' => VephimResource::collection($this->vephim),
+            'phim' => new VephimResource($this->getvephim()),
+            'ngay_mua' => $this->created_at,
+            'ngay_capnhat' => $this->updated_at,
         ];
     }
 }

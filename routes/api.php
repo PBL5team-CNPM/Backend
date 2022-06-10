@@ -70,6 +70,7 @@ Route::post('/addsuatchieu', [SuatchieuController::class, 'store']);
 Route::post('/deletesuatchieu/{id}', [SuatchieuController::class, 'destroy']);
 
 Route::get('/vephims', [VephimController::class, 'index']);
+Route::get('/vephimbyuser/{id}', [VephimController::class, 'findVephimByUser']);
 Route::post('/addvephim', [VephimController::class, 'store']);
 
 Route::post('/addfooddrink', [FoodDrinkController::class, 'store']);
@@ -79,3 +80,4 @@ Route::post('/deletefooddrink/{id}', [FoodDrinkController::class, 'destroy']);
 Route::post('/addfooddrinkbill', [FoodDrinkBillController::class, 'store']);
 
 Route::post('/addhoadon', [HoaDonController::class, 'store']);
+Route::get('/hoadonbyuser/{id}', [HoaDonController::class, 'findHoadonsByUser']);
