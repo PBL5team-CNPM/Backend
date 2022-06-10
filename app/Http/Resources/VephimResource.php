@@ -22,7 +22,10 @@ class VephimResource extends JsonResource
             'gia_ve' => $this->gia_ve,
             'ghengoi' => $this->ghengoi,
             'user' => $this->user,
-            'suatchieu' => $this->suatchieu,
+            'suatchieu' => new SuatchieuResource($this->suatchieu),
+            'poster' => $this->suatchieu->phim->poster,
+            'ten_phim' => $this->suatchieu->phim->ten,
+            'phim' => $this->suatchieu->phim,
         ];
     }
 }
