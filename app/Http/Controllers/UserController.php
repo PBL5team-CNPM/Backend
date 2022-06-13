@@ -7,6 +7,7 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -89,6 +90,35 @@ class UserController extends Controller
         }
         $user->permission()->sync((array)$request->permission);
         return response()->json(new UserResource($user));
+    }
+
+    public function change_password(Request $request){
+        $input = array(
+            'old_password' => $request->old_password,
+            'new_password' => $request->new_password,
+            'confirm_password' => $request->confirm_password,
+        );
+        $rules = array(
+            'old_password' => 'required',
+            'new_password' => 'required|min:6',
+            'confirm_password' => 'required|same:new_password',
+        );
+        $validator = Validator::make($input, $rules);
+
+        if($validator->fails()){
+            return response()->json(['message'=>$validator->errors()->first()], 404);
+        } else {
+            $user = User::findOrFail($request->user_id);
+            if((Hash::check($request->old_password, $user->password)) == false){
+                return response()->json(['message'=>"Check your old password"], 404);
+            } else if ((Hash::check($request->new_password,$user->password)) == true){
+                return response()->json(['message'=>"Please enter a new password that is not the same as the old password"], 404);
+            } else {
+                $user->update(['password' => Hash::make($request->new_password)]);
+                return response()->json(new UserResource($user));
+            }
+            return response()->json(['message'=>"User not found"], 404);
+        }
     }
 
     public function store(Request $request)
