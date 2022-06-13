@@ -59,6 +59,7 @@ Route::put('/grantpermissiontouser/{id}', [UserController::class, 'grantPermissi
 Route::put('/updateprofile/{id}', [UserController::class, 'update']);
 Route::post('/uploadavatar/{id}', [UserController::class, 'uploadAvatar']);
 Route::post('/deleteuser/{id}', [UserController::class, 'destroy']);
+Route::post('/changepassword', [UserController::class, 'change_password']);
 
 Route::get('/phongchieus', [PhongchieuController::class, 'index']);
 Route::post('/addphongchieu', [PhongchieuController::class, 'store']);
