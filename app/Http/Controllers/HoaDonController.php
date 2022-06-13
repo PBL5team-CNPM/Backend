@@ -36,6 +36,9 @@ class HoaDonController extends Controller
         return HoaDonResource::collection(hoa_don::where('user_id', $id)->orderBy('id','DESC')->get());
     }
 
+    public function total(){
+        return response(hoa_don::all()->sum('gia'));
+    }
     public function store(Request $request)
     {
         // $vephim = vephim::where("user_id", 2)->get();

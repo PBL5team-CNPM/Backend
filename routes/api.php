@@ -81,3 +81,4 @@ Route::post('/addfooddrinkbill', [FoodDrinkBillController::class, 'store']);
 
 Route::post('/addhoadon', [HoaDonController::class, 'store']);
 Route::get('/hoadonbyuser/{id}', [HoaDonController::class, 'findHoadonsByUser']);
+Route::get('/tonghoadon', [HoaDonController::class, 'total']);

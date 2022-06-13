@@ -25,7 +25,6 @@ class VephimResource extends JsonResource
             'suatchieu' => new SuatchieuResource($this->suatchieu),
             'poster' => $this->suatchieu->phim->poster,
             'ten_phim' => $this->suatchieu->phim->ten,
-            'phim' => $this->suatchieu->phim,
         ];
     }
 }
