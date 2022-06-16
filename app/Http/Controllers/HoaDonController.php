@@ -86,13 +86,13 @@ class HoaDonController extends Controller
         }
 
         // $user = User::all()->first();
-        $data = [
-            "user_name" => "",
-            "Message" => "Payment success!",
-            "total" => $hoadon->gia,
-        ];
-        $user = User::findOrFail($request->user_id);
-        Mail::to($user->email)->send(new Payment($data));
+        // $data = [
+        //     "user_name" => "",
+        //     "Message" => "Payment success!",
+        //     "total" => $hoadon->gia,
+        // ];
+        // $user = User::findOrFail($request->user_id);
+        // Mail::to($user->email)->send(new Payment($data));
 
         return response()->json(hoa_don::all());
     }

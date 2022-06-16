@@ -76,7 +76,7 @@ Route::get('/vephimbyuser/{id}', [VephimController::class, 'findVephimByUser']);
 Route::post('/addvephim', [VephimController::class, 'store']);
 
 Route::post('/addfooddrink', [FoodDrinkController::class, 'store']);
-Route::put('/updatefooddrink/{id}', [FoodDrinkController::class, 'update']);
+Route::post('/updatefooddrink/{id}', [FoodDrinkController::class, 'update']);
 Route::post('/deletefooddrink/{id}', [FoodDrinkController::class, 'destroy']);
 
 Route::post('/addfooddrinkbill', [FoodDrinkBillController::class, 'store']);

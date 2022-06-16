@@ -28,7 +28,20 @@ class FoodDrinkController extends Controller
      */
     public function store(Request $request)
     {
-        food_drink::create($request->all());
+        $fd = new food_drink;
+        $fd->ten = $request->ten;
+        $fd->gia = $request->gia;
+        $fd->save();
+
+        if($request->hasFile('image'))
+        {
+            $destination_path ='images/popcorns';
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $popcorn_name = 'popcorn_'.$fd->id.".".$extension;
+            $fd->image = $request->file('image')->storeAs($destination_path, $popcorn_name);
+            $fd->save();
+        }
         return response()->json(food_drink::all());
     }
 
@@ -56,7 +69,19 @@ class FoodDrinkController extends Controller
         if(is_null($food_drink)) {
             return response()->json(['message'=>'food_drink not found not found'], 404);
         }
-        $food_drink->update($request->all());
+        $food_drink->ten = $request->ten;
+        $food_drink->gia = $request->gia;
+        $food_drink->save();
+
+        if($request->hasFile('image'))
+        {
+            $destination_path ='images/popcorns';
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $popcorn_name = 'popcorn_'.$food_drink->id.".".$extension;
+            $food_drink->image = $request->file('image')->storeAs($destination_path, $popcorn_name);
+            $food_drink->save();
+        }
         return response()->json(food_drink::all());
     }
 

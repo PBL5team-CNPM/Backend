@@ -14,6 +14,7 @@ class food_drink extends Model
     protected $fillable = [
         'ten',
         'gia',
+        'image',
     ];
 
     public function food_drink_bill(){
