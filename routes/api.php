@@ -8,6 +8,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PhimController;
 use App\Http\Controllers\PhongchieuController;
 use App\Http\Controllers\SuatchieuController;
+use App\Http\Controllers\TestMailController;
 use App\Http\Controllers\TheLoaiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VephimController;
@@ -75,7 +76,7 @@ Route::get('/vephimbyuser/{id}', [VephimController::class, 'findVephimByUser']);
 Route::post('/addvephim', [VephimController::class, 'store']);
 
 Route::post('/addfooddrink', [FoodDrinkController::class, 'store']);
-Route::put('/updatefooddrink/{id}', [FoodDrinkController::class, 'update']);
+Route::post('/updatefooddrink/{id}', [FoodDrinkController::class, 'update']);
 Route::post('/deletefooddrink/{id}', [FoodDrinkController::class, 'destroy']);
 
 Route::post('/addfooddrinkbill', [FoodDrinkBillController::class, 'store']);
@@ -83,3 +84,6 @@ Route::post('/addfooddrinkbill', [FoodDrinkBillController::class, 'store']);
 Route::post('/addhoadon', [HoaDonController::class, 'store']);
 Route::get('/hoadonbyuser/{id}', [HoaDonController::class, 'findHoadonsByUser']);
 Route::get('/tonghoadon', [HoaDonController::class, 'total']);
+
+
+Route::get('/testmail', [TestMailController::class, 'index']);

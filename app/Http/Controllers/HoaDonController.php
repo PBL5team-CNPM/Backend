@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HoaDonResource;
 use App\Http\Resources\VephimResource;
+use App\Mail\Payment;
 use App\Models\food_drink;
 use App\Models\food_drink_bill;
 use App\Models\hoa_don;
+use App\Models\User;
 use App\Models\vephim;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 use function PHPUnit\Framework\isNull;
 
@@ -81,6 +84,15 @@ class HoaDonController extends Controller
                 }
             }
         }
+
+        // $user = User::all()->first();
+        // $data = [
+        //     "user_name" => "",
+        //     "Message" => "Payment success!",
+        //     "total" => $hoadon->gia,
+        // ];
+        // $user = User::findOrFail($request->user_id);
+        // Mail::to($user->email)->send(new Payment($data));
 
         return response()->json(hoa_don::all());
     }

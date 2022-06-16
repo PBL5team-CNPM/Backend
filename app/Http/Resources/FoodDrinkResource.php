@@ -18,6 +18,7 @@ class FoodDrinkResource extends JsonResource
             'id' =>$this->id,
             'ten' =>$this->ten,
             'gia' =>$this->gia,
+            'image' =>$this->image,
             'food_drink_bill' => $this->food_drink_bill()->sum('so_luong'),
         ];
     }
